@@ -1,0 +1,4 @@
+# Clone Repo
+# uv venv .venv
+# source ./venv/Scripts/activate
+# uv sync
