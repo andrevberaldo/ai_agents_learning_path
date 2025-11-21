@@ -1,6 +1,9 @@
-def main():
-    print("Hello from learning-path-ia-agents!")
+from dotenv import load_dotenv
 
+load_dotenv()
+
+def main():
+    pass
 
 if __name__ == "__main__":
     main()
