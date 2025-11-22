@@ -1,0 +1,284 @@
+PEÇA: Válvula de Controle XYZ-200
+VERSÃO: 1.0
+DATA: 22/11/2025
+AUTOR: Departamento de Engenharia — Documento simulado (fake)
+
+---
+
+1. VISÃO GERAL
+
+---
+
+Descrição: A válvula de controle XYZ-200 é um atuador eletromecânico de passagem para líquidos e gases não corrosivos, destinada a aplicações industriais de controle de vazão em tubulações DN25–DN100.
+Aplicação típica: sistemas HVAC, linhas de processo, unidades de dosagem.
+
+---
+
+2. IDENTIFICAÇÃO DA PEÇA
+
+---
+
+* Código do item: XYZ-200-A
+* Número de série: formato YYYYMMDD-XXXX
+* Revisão do hardware: R1
+
+---
+
+3. ESPECIFICAÇÕES TÉCNICAS
+
+---
+
+Mecânicas:
+
+* Diâmetros disponíveis: DN25, DN40, DN50, DN80, DN100
+* Material corpo: Aço inox 316
+* Acabamento: jateado + passivado
+* Peso (ex.): DN50 = 6.4 kg
+* Pressão máxima de operação: 16 bar
+* Temperatura de operação: -20°C a 100°C
+
+Elétricas / Atuador:
+
+* Alimentação: 24 VDC (tolerância ±10%)
+* Consumo de pico: 8 W
+* Sinal de comando: 4–20 mA (entrada) ou Protocolo Modbus RTU (opcional)
+* Resolução de controle: 0.1% do curso
+* Tempo típico de abertura (0→100%): 3.5 s
+* Grau de proteção (atuador): IP67
+
+Conectores / Interfaces:
+
+* Entrada elétrica: conector M12-5p (alimentação + sinal analógico)
+* Porta serial (se presente): RS485, 2 fios
+* Pinos (M12): 1=V+, 2=GND, 3=4-20mA-, 4=4-20mA+, 5=Reserved
+
+Certificações (simuladas): CE, ATEX Zone 2 (quando com kit antiexplosão)
+
+---
+
+4. REQUISITOS DE INSTALAÇÃO
+
+---
+
+* Montar com fluxo na direção indicada pela seta no corpo.
+* Parafusar com torque recomendado: 25–35 Nm (DN50, flange padrão PN16).
+* Evitar tensões por alinhamento incorreto da tubulação (usar flange deslizante durante montagem).
+* Aterramento: conectar terminal de aterramento do corpo a terra da planta.
+
+---
+
+5. TESTES DE ACEITAÇÃO (FÁBRICA)
+
+---
+
+* Teste de estanqueidade: 1.5×PN por 10 min, sem variação de pressão.
+* Teste funcional: ciclo de abertura/fechamento 5x, medição de tempo de resposta.
+* Verificação elétrica: isolamento >100 MΩ a 500 V DC entre live e terra.
+
+---
+
+6. MANUTENÇÃO PREVENTIVA
+
+---
+
+* Inspeção visual: a cada 6 meses.
+* Lubrificação: mancais internos já lubrificados — substituir vedações a cada 24 meses.
+* Teste funcional: anual (calibração do sinal 4–20 mA).
+* Peças recomendadas em estoque: kit de reparo (vargens, O-rings, molas), filtro de linha 24 V.
+
+---
+
+7. LISTA DE FERRAMENTAS RECOMENDADAS
+
+---
+
+* Multímetro com leitura mA e V
+* Alicate amperímetro (se necessário)
+* Manômetro para teste de pressão
+* Fonte 24 V DC ajustável
+* Chaves hex e torque
+* Computador com software Modbus (se aplicável)
+
+---
+
+8. TROUBLESHOOTING — PASSO A PASSO
+
+---
+
+Instruções gerais antes de iniciar:
+
+* Seguir procedimentos de bloqueio e tag-out (LOTO).
+* Usar EPI adequado (luvas isolantes se houver risco elétrico, proteção ocular, etc.).
+* Registrar parâmetros antes de qualquer ajuste.
+
+## Problema A: Válvula não liga / sem alimentação elétrica
+
+Sintomas:
+
+* Atuador não se move quando há comando.
+* Multímetro mostra 0 V nos terminais de alimentação.
+
+Causas possíveis:
+
+1. Fonte 24 V desligada ou falha.
+2. Fusível queimado (painel de controle).
+3. Conexão solta no conector M12.
+4. Falha interna do atuador (ex.: driver queimado).
+
+Procedimento diagnóstico e correção (passo a passo):
+
+1. Confirme LOTO e segurança.
+2. Medir tensão na entrada do painel de controle — deve haver 24 V DC. Se inexistente, verifique alimentação upstream.
+3. Verificar fusíveis no painel: substituir fusível queimado por igual especificação.
+4. Medir tensão nos pinos 1 e 2 do M12 no próprio atuador. Se 24 V presente no painel mas ausente no M12, inspecionar cabos e conectores entre painel e atuador; reparar emendas.
+5. Se 24 V chega ao M12 e ainda não liga: desconectar conector e inspecionar pinos por corrosão; limpar e reapertar.
+6. Substituir atuador ou enviá-lo à manutenção se driver interno estiver danificado.
+
+Causa provável se fusível queima repetidamente: curto no cabo, polaridade invertida ou componente interno curto — isolar e testar continuidade.
+
+## Problema B: Válvula abre parcialmente / resposta insuficiente
+
+Sintomas:
+
+* Comando 100% (4–20 mA em 20 mA), válvula só abre 70%.
+* Oscilações de posição.
+
+Causas possíveis:
+
+1. Sinal 4–20 mA mal calibrado ou cabo com problema.
+2. Pressão diferencial acima do especificado.
+3. Obstrução mecânica (suporte interno, detrito).
+4. Limitação por configuração interna (end-stops ou curva de controle).
+
+Procedimento diagnóstico e correção:
+
+1. Medir corrente no terminal 4–20 mA; confirmar que comanda 20 mA quando solicitado.
+2. Se corrente correta, verifique leitura de posição (se disponível); compare com posição real.
+3. Isolar a válvula e aplicar 24 V direto com sinal de teste: observar se consegue 100% de abertura manualmente (modo calibrado ou manual se disponível).
+4. Desmontar e inspecionar passagem: limpar remoção de detritos; verificar desgaste das seat/livre fluxo.
+5. Verificar curvas de controle no controlador ou parâmetros Modbus: resetar para parâmetros de fábrica se necessário e recalibrar.
+6. Se pressão diferencial for a causa: instalar bypass temporário ou reduzir vazão até troca por válvula adequada.
+
+## Problema C: Vazamento externo (na flange ou corpo)
+
+Sintomas:
+
+* Gotejamento visível ou perda de pressão no sistema.
+
+Causas possíveis:
+
+1. Junta de flange defeituosa ou apertada incorretamente.
+2. Roscas/face de flange danificadas.
+3. Trinca no corpo (rare).
+
+Procedimento diagnóstico e correção:
+
+1. Parar o sistema e descarregar pressão. Confirmar LOTO.
+2. Inspecionar visualmente a área da vedação para identificar origem.
+3. Checar torque dos parafusos: reapertar seguindo sequência cruzada e torque recomendado.
+4. Substituir junta se deformada; inspecionar faces de flange.
+5. Se trinca no corpo: retirar peça de serviço e substituir (reparo em campo somente para microtrincas sob supervisão do fabricante).
+
+## Problema D: Sinal 4–20 mA instável / ruído elétrico
+
+Sintomas:
+
+* Leitura de corrente oscila sem alteração no setpoint.
+* Comportamento errático de abertura/fechamento.
+
+Causas possíveis:
+
+1. Interferência eletromagnética (EMI) de motores próximos.
+2. Cabos não trançados/sem blindagem.
+3. Fonte de alimentação com ripple elevado.
+4. Falha no transmissor interno.
+
+Procedimento diagnóstico e correção:
+
+1. Verificar se a fiação segue separada de cabos de potência; reposicionar se necessário.
+2. Verificar continuidade da blindagem e fazer ligação de terra adequada (ponto único quando recomendado pelo fabricante).
+3. Medir ripple na fonte 24 V com osciloscópio; se >200 mVpp, substituir fonte.
+4. Testar com jumper de sinal curto (simular 4–20 mA com fonte calibrada) para isolar se problema é externo ou no atuador.
+5. Se problema persiste com sinal simulado, substituir transmissor/driver.
+
+## Problema E: Ruído mecânico / vibração excessiva
+
+Sintomas:
+
+* Ruídos altos durante movimento, vibração na tubulação.
+
+Causas possíveis:
+
+1. Assentos (valve seat) desgastados ou soltos.
+2. Cavitação por queda de pressão excessiva.
+3. Montagem frouxa / alinhamento incorreto.
+
+Procedimento diagnóstico e correção:
+
+1. Confirmar condições de processo (pressão de entrada / saída). Se cavitação provável, reduzir ΔP, instalar amortecedor ou trocar por válvula com trim anti-cavitação.
+2. Apertar suportes e verificar alinhamento.
+3. Se assentos desgastados, substituir kit de vedação e assentos.
+
+## Problema F: Comunicação Modbus/RS485 não responde
+
+Sintomas:
+
+* Software não detecta o dispositivo.
+
+Causas possíveis:
+
+1. Endereço Modbus incorreto ou taxa (baud) errada.
+2. Conexão RS485 invertida (A/B trocados) ou terminador faltando.
+3. Cabos longos sem repetidor ou falha de conversor.
+
+Procedimento diagnóstico e correção:
+
+1. Verificar parâmetros de comunicação: baud rate, parity, stop bits e endereço; ajustar no software para coincidir com a válvula.
+2. Medir continuidade A↔A, B↔B; inverter se necessário.
+3. Adicionar terminador 120 ohm nas extremidades se rede enxuta mostrar reflexão.
+4. Usar um conversor RS485-USB conhecido bom para testar comunicação ponto a ponto.
+
+---
+
+9. EXEMPLOS DE LOGS (SIMULADOS)
+
+---
+
+[2025-11-22 09:12:05] INFO - Comando recebido: 20 mA (100%).
+[2025-11-22 09:12:08] WARN - Posição real 72% — diferença 28%.
+[2025-11-22 09:12:12] ERROR - Sensor de posição não responde.
+
+---
+
+10. PEÇAS DE REPOSIÇÃO RECOMENDADAS
+
+---
+
+* Kit de reparo XYZ-KIT-50 (O-rings, vedações, seat DN50)
+* Atuador elétrico XYZ-ACT-24V
+* Junta flange DN50 PN16
+* Fusíveis (T 5A slow-blow)
+
+---
+
+11. CONTROLE DE QUALIDADE / CHECKLIST PARA TÉCNICO
+
+---
+
+* Confirmação do código do item e serial.
+* Validação da tensão de entrada (24 V).
+* Teste funcional de abertura/fechamento 3 ciclos.
+* Verificação de vazamentos após pressurização.
+* Registro das leituras de corrente e posição.
+
+---
+
+12. HISTÓRICO DE REVISÕES
+
+---
+
+* 1.0 (22/11/2025): Documento inicial (simulado).
+
+---
+
+NOTA: Este documento é uma simulação / exemplo e não substitui manuais oficiais do fabricante. Para intervenções críticas ou em áreas classificadas, seguir manual do fabricante e normas locais.

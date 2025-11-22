@@ -1,0 +1,2 @@
+Cliente: Estou com problemas com a peça xyz-200, há ruidos quando em movimento
+Chatbot: Você já verificou se os assento estão devidamente fixado e sem sinais de desgaste?
